@@ -1,4 +1,19 @@
 <?php
+/**
+ * @author neeke@php.net
+ * Date: 14-1-27 16:47
+ */
+define('SEASLOG_ALL', 'ALL');
+define('SEASLOG_DEBUG', 'DEBUG');
+define('SEASLOG_INFO', 'INFO');
+define('SEASLOG_NOTICE', 'NOTICE');
+define('SEASLOG_WARNING', 'WARNING');
+define('SEASLOG_ERROR', 'ERROR');
+define('SEASLOG_CRITICAL', 'CRITICAL');
+define('SEASLOG_ALERT', 'ALERT');
+define('SEASLOG_EMERGENCY', 'EMERGENCY');
+define('SEASLOG_DETAIL_ORDER_ASC', 1);
+define('SEASLOG_DETAIL_ORDER_DESC', 2);
 
 class SeasLog
 {
@@ -13,7 +28,7 @@ class SeasLog
     }
 
     /**
-     * 设置basePath
+     * Set The basePath
      *
      * @param $basePath
      *
@@ -25,7 +40,7 @@ class SeasLog
     }
 
     /**
-     * 获取basePath
+     * Get The basePath
      *
      * @return string
      */
@@ -33,9 +48,25 @@ class SeasLog
     {
         return 'the base_path';
     }
+    
+    /**
+     * Set The requestID
+     * @param string
+     * @return bool
+     */
+    static public function setRequestID($request_id){
+        return TRUE;
+    }
+    /**
+     * Get The requestID
+     * @return string
+     */
+    static public function getRequestID(){
+        return uniqid();
+    }
 
     /**
-     * 设置模块目录
+     * Set The logger
      * @param $module
      *
      * @return bool
@@ -46,7 +77,7 @@ class SeasLog
     }
 
     /**
-     * 获取最后一次设置的模块目录
+     * Get The lastest logger
      * @return string
      */
     static public function getLastLogger()
@@ -55,7 +86,7 @@ class SeasLog
     }
 
     /**
-     * 设置DatetimeFormat配置
+     * Set The DatetimeFormat
      * @param $format
      *
      * @return bool
@@ -66,7 +97,7 @@ class SeasLog
     }
 
     /**
-     * 返回当前DatetimeFormat配置格式
+     * Get The DatetimeFormat
      * @return string
      */
     static public function getDatetimeFormat()
@@ -75,7 +106,7 @@ class SeasLog
     }
 
     /**
-     * 统计所有类型（或单个类型）行数
+     * Count All Types（Or Type）Log Lines
      * @param string $level
      * @param string $log_path
      * @param null   $key_word
@@ -88,14 +119,14 @@ class SeasLog
     }
 
     /**
-     * 以数组形式，快速取出某类型log的各行详情
+     * Get The Logs As Array
      *
      * @param        $level
      * @param string $log_path
      * @param null   $key_word
      * @param int    $start
      * @param int    $limit
-     * @param        $order 默认为正序 SEASLOG_DETAIL_ORDER_ASC，可选倒序 SEASLOG_DETAIL_ORDER_DESC
+     * @param        $order SEASLOG_DETAIL_ORDER_ASC(Default)  SEASLOG_DETAIL_ORDER_DESC
      *
      * @return array
      */
@@ -105,7 +136,7 @@ class SeasLog
     }
 
     /**
-     * 获得当前日志buffer中的内容
+     * Get The Buffer In Memory As Array
      *
      * @return array
      */
@@ -115,7 +146,7 @@ class SeasLog
     }
 
     /**
-     * 将buffer中的日志立刻刷到硬盘
+     * Flush The Buffer Dump To Writer Appender
      *
      * @return bool
      */
@@ -125,7 +156,7 @@ class SeasLog
     }
 
     /**
-     * 记录debug日志
+     * Record Debug Log
      *
      * @param        $message
      * @param array  $content
@@ -137,7 +168,7 @@ class SeasLog
     }
 
     /**
-     * 记录info日志
+     * Record Info Log
      *
      * @param        $message
      * @param array  $content
@@ -149,7 +180,7 @@ class SeasLog
     }
 
     /**
-     * 记录notice日志
+     * Record Notice Log
      *
      * @param        $message
      * @param array  $content
@@ -161,7 +192,7 @@ class SeasLog
     }
 
     /**
-     * 记录warning日志
+     * Record Warning Log
      *
      * @param        $message
      * @param array  $content
@@ -173,7 +204,7 @@ class SeasLog
     }
 
     /**
-     * 记录error日志
+     * Record Error Log
      *
      * @param        $message
      * @param array  $content
@@ -185,7 +216,7 @@ class SeasLog
     }
 
     /**
-     * 记录critical日志
+     * Record Critical Log
      *
      * @param        $message
      * @param array  $content
@@ -197,7 +228,7 @@ class SeasLog
     }
 
     /**
-     * 记录alert日志
+     * Record Alert Log
      *
      * @param        $message
      * @param array  $content
@@ -209,7 +240,7 @@ class SeasLog
     }
 
     /**
-     * 记录emergency日志
+     * Record Emergency Log
      *
      * @param        $message
      * @param array  $content
@@ -221,7 +252,7 @@ class SeasLog
     }
 
     /**
-     * 通用日志方法
+     * The Common Record Log Function
      * @param        $level
      * @param        $message
      * @param array  $content
@@ -232,4 +263,3 @@ class SeasLog
 
     }
 }
-
